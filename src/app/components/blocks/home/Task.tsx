@@ -1,7 +1,7 @@
 import { taskImgs } from "@/utils/taskImag";
 import { Stickers, ProgressBlock } from "../home";
 import { TaskParams } from "../../ui/home";
-import { TaskResponsible } from "./TaskResponsible";
+import { Responsible } from "./Responsible";
 
 interface IStickerData {
     title: string;
@@ -9,7 +9,7 @@ interface IStickerData {
 }
 
 interface ITaskStickers {
-    levels: IStickerData[];
+    levels?: IStickerData[];
     fields: string[];
 }
 
@@ -36,7 +36,7 @@ export const Task = ({ title, description, stickers, deadline, projectName, proc
                     : null
             }
             {
-                stickers 
+                stickers
                     ? 
                         <Stickers 
                             stickers={stickers} 
@@ -61,7 +61,7 @@ export const Task = ({ title, description, stickers, deadline, projectName, proc
                         />
                     : null
             }
-            <TaskResponsible 
+            <Responsible 
                 peoples={peoples} 
             />
         </div>

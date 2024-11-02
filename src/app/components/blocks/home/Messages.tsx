@@ -45,6 +45,7 @@ export const Messages = () => {
                                 message={message.message}
                                 time={message.time}
                                 userImg={message.userImg}
+                                mxWidth="50vw"
                             />
                         </div>
                     )

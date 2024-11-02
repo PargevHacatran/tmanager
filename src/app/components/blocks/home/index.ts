@@ -13,5 +13,7 @@ import { Tasks } from "./Tasks";
 import { Task } from './Task';
 import { Stickers } from "./Stickers";
 import { ProgressBlock } from "./ProgressBlock";
+import { SupportWindow } from "./SupportWindow";
+import { PaymentAnaltic } from "./PaymentAnaltic";
 
-export { SideBar, HomeContent, ChatBlock, TeamTaskBlock, TopBar, FilterBlock, Messages, DashboardBlock, TasksAnalytic, DealsAnalytic, BezieLine, Tasks, Task, Stickers, ProgressBlock };
+export { SideBar, HomeContent, ChatBlock, TeamTaskBlock, TopBar, FilterBlock, Messages, DashboardBlock, TasksAnalytic, DealsAnalytic, BezieLine, Tasks, Task, Stickers, ProgressBlock, SupportWindow, PaymentAnaltic };

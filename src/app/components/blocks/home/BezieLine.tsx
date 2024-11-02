@@ -11,7 +11,7 @@ export const BezieLine = () => {
     const currentMonth = date.getMonth() + 1;
     const currentYear = date.getFullYear(); // Исправленный расчет года
     const currentDate = new Date(currentYear, currentMonth, 0);
-    const labels = [...Array(currentDate.getDate())].map((_, i) => i + 1); // Количество дней в месяце
+    const labels = [...Array(currentDate.getDate())].map((_, i) => i + 1);
 
     const drawBezieLine = () => {
         const canvas = canvasRef.current;
@@ -77,6 +77,8 @@ export const BezieLine = () => {
             canvas.height = 220;
             drawBezieLine();
         }
+
+        document.querySelector("#bezie-canvas")?.classList.add('bezie-line');
     }, []);
 
     return (
@@ -104,7 +106,7 @@ export const BezieLine = () => {
                 </div>
             </div>
             <div className="absolute ml-[24px] w-[94%] h-full top-0">
-                <canvas id="canvas" ref={canvasRef} className="w-full h-full z-[100]"></canvas>
+                <canvas id="bezie-canvas" ref={canvasRef} className="w-full h-full z-[100]"></canvas>
             </div>
         </div>
     );

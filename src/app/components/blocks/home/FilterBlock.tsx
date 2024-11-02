@@ -55,7 +55,11 @@ export const FilterBlock = () => {
                 {
                     filterImages.map((li) => (
                         <Li
-                            onClick={() => dispatch(setFilterTypes(li.title))}
+                            onClick={() => {
+                                filterType === li.title 
+                                    ? dispatch(setFilterTypes(''))
+                                    : dispatch(setFilterTypes(li.title))
+                            }}
                             className=""
                         >
                             { li.title === filterType ? li.activeImg : li.img }

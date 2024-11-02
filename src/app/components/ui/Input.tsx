@@ -15,13 +15,13 @@ interface IInput {
 
 export const Input = ({ type, name, placeholder, className, labelClassName, imgClassName, onChange, value, imgURL }:IInput) => {
     return (
-        <label className={ labelClassName ? labelClassName : '' }>
+        <label className={ labelClassName ? `${labelClassName} input-field` : 'input-field' }>
             <input 
                 type={type}
                 name={name}
                 placeholder={placeholder}
                 value={value ? value : undefined}
-                className={className}
+                className={`${className} input-field`}
                 onChange={(e:React.ChangeEvent<HTMLInputElement>) => onChange(e)}
             />
             {

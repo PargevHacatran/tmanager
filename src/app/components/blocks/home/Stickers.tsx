@@ -6,7 +6,7 @@ interface IStickerData {
 }
 
 interface ITaskStickers {
-    levels: IStickerData[];
+    levels?: IStickerData[];
     fields: string[];
 }
 

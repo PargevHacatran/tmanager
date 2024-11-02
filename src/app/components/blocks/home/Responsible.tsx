@@ -6,7 +6,7 @@ interface ITaskResponsible {
     peoples: string[];
 }
 
-export const TaskResponsible = ({ peoples }:ITaskResponsible) => {
+export const Responsible = ({ peoples }:ITaskResponsible) => {
     return (
         <div className="flex justify-between mt-[17px] pt-[12px] border border-[#323539] border-t-1 border-l-0 border-r-0 border-b-0">
             <div className="flex ml-[10px]">

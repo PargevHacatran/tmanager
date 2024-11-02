@@ -1,16 +1,26 @@
+'use client';
+
 import '@/app/globals.css';
+import { useEffect, useState } from 'react';
 
 export const TasksAnalytic = () => {
+    const [gradientStyle, setGradientStyle] = useState<object>({}); 
+
     const pused = 10;
     const completed = 60;
     const onGoing = 20;
     const upcoming = 10;
 
-    const gradientStyle:object = {
-        '--completed': `${completed}%`,
-        '--upcoming': `${completed + upcoming}%`,
-        '--pused': `${completed + upcoming + pused}%`,
-    };
+    useEffect(() => {
+        setGradientStyle({
+            '--completed': `${completed}%`,
+            '--upcoming': `${completed + upcoming}%`,
+            '--pused': `${completed + upcoming + pused}%`,
+            '--ongoing': `${ 100 }`
+        });
+
+        document.querySelector("#diogram")?.classList.add('tasks-analytic-canvas');
+    }, [])
 
     return (
         <div className="bg-[#2A2D32] w-[475px] h-[375px] rounded-[10px]">
@@ -19,7 +29,7 @@ export const TasksAnalytic = () => {
             </div>
             <div className="w-[225px] h-[225px] pl-[48px] pt-[33px] flex items-center gap-x-[48px]">
                 <div>
-                    <div className='tasks-analytic-canvas flex justify-center items-center w-[224px] h-[224px] rounded-[50%]'style={gradientStyle}>
+                    <div id="diogram" className='flex justify-center items-center w-[224px] h-[224px] rounded-[50%]' style={gradientStyle}>
                         <div className='bg-[#2A2D32] w-[200px] h-[200px] rounded-[50%] flex justify-center items-center'>
                             <p className='text-[48px] text-[#55DD4A]'>{ completed }</p>
                         </div>

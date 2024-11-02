@@ -1,6 +1,40 @@
-import { Task } from "../home";
+'use client';
 
-const tasks:object = {
+import { useDispatch, useSelector } from "react-redux";
+import { Task } from "../home";
+import { useEffect, useState } from "react";
+import { setFilterTypes } from "@/lib/feature/filter/filterSlice";
+
+interface IType {
+    title: string;
+    color: string;
+}
+
+interface IStickerData {
+    title: string;
+    bg: string;
+}
+
+interface ITaskStickers {
+    levels?: IStickerData[];
+    fields: string[];
+}
+
+interface ITask {
+    title: string;
+    description?: string;
+    stickers?: ITaskStickers;
+    deadline: string;
+    projectName: string;
+    proccessProcent?: number;
+    peoples: string[];
+}
+
+interface ITasks {
+    [ key:string ]: ITask[];
+}
+
+const tasks:ITasks = {
     "On Going": [
         {
             title: 'Create Home screen ERP Website',
@@ -167,7 +201,7 @@ const tasks:object = {
     ]
 };
 
-const tasksType = [
+const tasksType:IType[] = [
     {
         title: "On Going",
         color: '#3C79D6'
@@ -187,23 +221,39 @@ const tasksType = [
 ];
 
 export const Tasks = () => {
+    const [types, setTypes] = useState<IType[]>(tasksType);
+
+    const filterName = useSelector((state:any) => state.filter.filterName);
+    const filterType = useSelector((state:any) => state.filter.filterType);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (filterName !== 'All Task') {
+            setTypes(tasksType.filter((taskType) => taskType.title === filterName));
+            dispatch(setFilterTypes('columnTasks'));
+        } else {
+            setTypes(tasksType);
+            dispatch(setFilterTypes(''));
+        }
+    }, [filterName]);
+
     return (
-        <div className="flex gap-x-[23px] w-full px-[40px]">
+        <div className={`flex gap-x-[23px] gap-y-[23px] w-full px-[40px] ${ filterType === 'columnTasks' ? 'flex-col' : 'flex-row' }`}>
             {
-                tasksType.map((taskType) => (
+                types.map((type) => (
                     <div>
                         <div className="flex gap-x-[12px] items-center mb-[24px]">
-                            <div className="w-[12px] h-[12px] rounded-[50%]" style={{ background: taskType.color }}></div>
-                            <p className="text-[16px]">{ taskType.title }</p>
-                            <p className="text-[#6C717B] text-[16px]">{ tasks[taskType.title].length }</p>
+                            <div className="w-[12px] h-[12px] rounded-[50%]" style={{ background: type.color }}></div>
+                            <p className="text-[16px]">{ type.title }</p>
+                            <p className="text-[#6C717B] text-[16px]">{ tasks[type.title].length }</p>
                         </div>
-                        <div className="flex flex-col gap-y-[24px]">
-                            {
-                                tasks[taskType.title]?.map((task) => (
+                        <div className={`flex gap-y-[24px] gap-x-[24px] ${ filterType === 'columnTasks' ? 'flex-row' : 'flex-col' }`}>
+                            { 
+                                tasks[type.title].map((task) => (
                                     <Task 
                                         title={task.title}
                                         description={task.description ? task.description : ''}
-                                        stickers={task.stickers ? task.stickers : []}
+                                        stickers={task.stickers ? task.stickers : {} as ITaskStickers}
                                         deadline={task.deadline}
                                         projectName={task.projectName}
                                         proccessProcent={task.proccessProcent}

@@ -4,12 +4,13 @@ import Image from "next/image";
 
 interface IButton {
     onClick: React.MouseEventHandler<HTMLButtonElement>;
-    btnText: string;
+    btnText: string | React.ReactNode;
     className: string;
+    imgClassName?: string;
     imgURL?: string;
 }
 
-export const Button = ({ onClick, btnText, className, imgURL }:IButton) => {
+export const Button = ({ onClick, btnText, className, imgURL, imgClassName }:IButton) => {
     return (
         <button
             onClick={(e:React.MouseEvent<HTMLButtonElement>) => onClick(e)}
@@ -18,7 +19,7 @@ export const Button = ({ onClick, btnText, className, imgURL }:IButton) => {
             {
                 imgURL 
                     ? 
-                        <div className="relative w-[35px] h-[35px]">
+                        <div className={imgClassName}>
                             <Image 
                                 layout="fill"
                                 src={imgURL}

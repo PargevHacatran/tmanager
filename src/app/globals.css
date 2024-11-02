@@ -28,27 +28,32 @@ body {
   );
 
   animation: drawCircle 1s ease-out forwards;
-  transition: 3s;
+  transition: all 0.5s;
 }
 
 @keyframes drawCircle {
   0% {
-      background: conic-gradient(#55DD4A 0% 0%, #FFC123 0% 0%, #E84040 0% 0%, #3C79D6 0% 0%);
+    background: conic-gradient(
+          #55DD4A 0% 0%,
+          #FFC123 0% 0%,
+          #E84040 0% 0%,
+          #3C79D6 0% 0%
+      );
   }
   60% {
     background: conic-gradient(
           #55DD4A 0% var(--completed),
-          #FFC123 0 0,
-          #E84040 0 0,
-          #3C79D6 0 0
+          #FFC123 0% 0%,
+          #E84040 0% 0%,
+          #3C79D6 0% 0%
       );
   }
   70% {
     background: conic-gradient(
       #55DD4A 0% var(--completed),
       #FFC123 var(--completed) var(--upcoming),
-      #E84040 0 0,
-      #3C79D6 0 0
+      #E84040 0% 0%,
+      #3C79D6 0% 0%
     );
   }
   80% {
@@ -56,7 +61,7 @@ body {
           #55DD4A 0% var(--completed),
           #FFC123 var(--completed) var(--upcoming),
           #E84040 var(--upcoming) var(--pused),
-          #3C79D6 0 0
+          #3C79D6 0% 0%
       );
   }
   100% {
@@ -64,7 +69,20 @@ body {
           #55DD4A 0% var(--completed),
           #FFC123 var(--completed) var(--upcoming),
           #E84040 var(--upcoming) var(--pused),
-          #3C79D6 var(--pused) 100%
+          #3C79D6 var(--pused) var(--pused) 
       );
+  }
+}
+
+.bezie-line {
+  animation: bezieDraw 1s forwards;
+  transition: 0.5s;
+}
+
+@keyframes bezieDraw {
+  from {
+    clip-path: rect(0 0 100% 0 round 00%);
+  } to {
+    clip-path: rect(0 100% 100% 0 round 0%);
   }
 }
