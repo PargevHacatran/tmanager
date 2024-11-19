@@ -86,3 +86,16 @@ body {
     clip-path: rect(0 100% 100% 0 round 0%);
   }
 }
+
+.col {
+  animation: sliceCol 1s forwards;
+  transition: 0.5s;
+}
+
+@keyframes sliceCol {
+  from {
+    height: 0;
+  } to {
+    height: var(--h);
+  }
+}
